@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package calculator;
+
+option java_package = "com.linadom.nikak";
+option java_multiple_files = true;
+
+message Input {
+  double number = 1;
+}
+
+message Output {
+  double result = 1;
+}
+
+service CalculatorService {
+  // unary - вернуть корень числа
+  rpc findSqrt(Input) returns (Output) {};
+
+  // bi-directional - макс число из списка
+  rpc findMax(stream Input) returns (stream Output) {};
+
+  // server - найти все множители из которого состоят числа
+  rpc getNumbersAllMultipliers(Input) returns (stream Output) {};
+  // client - получить стандартное распределение чисел
+  rpc getSTD(stream Input) returns (Output) {};
+}
